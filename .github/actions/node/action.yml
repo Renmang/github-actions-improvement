@@ -4,23 +4,22 @@ description: "Get & Cache Dependencies(via npm) for faster builds"
 runs:
   using: "composite"
   steps:
-  # Setup Node.js environment and cache npm dependencies
-      - name: Setup Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
+    # Setup Node.js environment and cache npm dependencies
+    - name: Setup Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: "npm"
 
-      - name: Cache node_modules
-        uses: "actions/cache@v4"
-        id: cache-node-modules
-        with:
-          path: "node_modules"
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+    - name: Cache node_modules
+      uses: "actions/cache@v4"
+      id: cache-node-modules
+      with:
+        path: "node_modules"
+        key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
 
-      - name: Install dependencies if cache not found
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: |
-          npm ci
-      # the shell to be used is required in composite custom actions
+    - name: Install dependencies if cache not found
+      if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      run: |
+        npm ci
       shell: bash
