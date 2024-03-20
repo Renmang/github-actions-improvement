@@ -3,4 +3,8 @@ describe("Test", () => {
     const sum = (a: number, b: number) => a + b;
     expect(sum(1, 2)).toBe(3);
   });
+  it("should fail", () => {
+    const currentDate = new Date();
+    expect(currentDate.getMinutes()).toBeLessThan(5);
+  });
 });
