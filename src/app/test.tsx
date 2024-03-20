@@ -4,6 +4,7 @@ describe("Test", () => {
     expect(sum(1, 2)).toBe(3);
   });
   it("should fail", () => {
-    expect(1).toBe(2);
+    const currentDate = new Date();
+    expect(currentDate.getMinutes()).toBeLessThan(5);
   });
 });
