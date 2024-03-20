@@ -1,4 +1,4 @@
-name: Tests & Release
+name: Tests
 
 on:
   push:
@@ -10,6 +10,7 @@ on:
 
 jobs:
   test:
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +24,7 @@ jobs:
         run: |
           npm run test
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -37,9 +39,3 @@ jobs:
           npm run build
         env:
           CI: true
-  release:
-    runs-on: ubuntu-latest
-    needs: [test, build]
-    steps:
-      - name: Echo 'hello release'
-        run: echo 'hello release'
