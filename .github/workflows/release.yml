@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Echo 'hello release'
+      - name: Echo 'hello releasee'
         run: echo 'hello release ${{ secrets.TEST_SECRET}} & ${{ secrets.TEST_VSCODE_ACTION}}'
   on-failure:
     name: Release failed
