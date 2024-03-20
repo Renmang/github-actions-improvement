@@ -15,9 +15,11 @@ jobs:
       - name: Echo 'hello release'
         run: echo 'hello release'
   on-failure:
-    name: Notify
+    name: Release failed
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
-      - name: Test failed
-        run: echo 'The triggering workflow failed because of broken build/tests. Please check the logs and fix the issue.'
+      - name: Tests or build failed, release not triggered
+        run: |
+          echo 'The triggering workflow failed because of broken build/tests. Please check the logs and fix the issue.'
+          exit 1
